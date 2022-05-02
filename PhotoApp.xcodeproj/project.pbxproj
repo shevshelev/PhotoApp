@@ -7,23 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151DE5BF22900BA68775A738 /* Pods_PhotoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A996EEEC9FF373ECA37CFEDF /* Pods_PhotoApp.framework */; };
+		B80971B128203AE90012F314 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80971B028203AE90012F314 /* DataManager.swift */; };
+		B80971B3282043FC0012F314 /* PhotoCollectionViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80971B2282043FC0012F314 /* PhotoCollectionViewModelCell.swift */; };
+		B80971B62820448A0012F314 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80971B52820448A0012F314 /* Box.swift */; };
+		B80971B828204BFD0012F314 /* PhotosCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80971B728204BFD0012F314 /* PhotosCollectionViewModel.swift */; };
+		B80971BA282068C00012F314 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80971B9282068C00012F314 /* DetailViewModel.swift */; };
 		B81532F4281BDBA1002C0611 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81532F3281BDBA1002C0611 /* AppDelegate.swift */; };
 		B81532F6281BDBA1002C0611 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81532F5281BDBA1002C0611 /* SceneDelegate.swift */; };
-		B81532F8281BDBA1002C0611 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81532F7281BDBA1002C0611 /* ViewController.swift */; };
-		B81532FB281BDBA1002C0611 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B81532F9281BDBA1002C0611 /* Main.storyboard */; };
+		B81532F8281BDBA1002C0611 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81532F7281BDBA1002C0611 /* TabBarController.swift */; };
 		B81532FD281BDBA2002C0611 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B81532FC281BDBA2002C0611 /* Assets.xcassets */; };
 		B8153300281BDBA2002C0611 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B81532FE281BDBA2002C0611 /* LaunchScreen.storyboard */; };
+		B815330D281BDE08002C0611 /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B815330C281BDE08002C0611 /* PhotosCollectionViewController.swift */; };
+		B815330F281BDE7A002C0611 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B815330E281BDE7A002C0611 /* FavouritesTableViewController.swift */; };
+		B8153311281BDEA4002C0611 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8153310281BDEA4002C0611 /* DetailViewController.swift */; };
+		B8153314281C0052002C0611 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8153313281C0052002C0611 /* Photo.swift */; };
+		B8153317281C0365002C0611 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8153316281C0365002C0611 /* NetworkManager.swift */; };
+		B866BA96281C104000EC67F8 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866BA95281C104000EC67F8 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F1D968B621E31BEEEAF9979 /* Pods-PhotoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoApp.release.xcconfig"; path = "Target Support Files/Pods-PhotoApp/Pods-PhotoApp.release.xcconfig"; sourceTree = "<group>"; };
+		9FEB22FFA445D9379F024D1E /* Pods-PhotoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoApp.debug.xcconfig"; path = "Target Support Files/Pods-PhotoApp/Pods-PhotoApp.debug.xcconfig"; sourceTree = "<group>"; };
+		A996EEEC9FF373ECA37CFEDF /* Pods_PhotoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B80971B028203AE90012F314 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B80971B2282043FC0012F314 /* PhotoCollectionViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewModelCell.swift; sourceTree = "<group>"; };
+		B80971B52820448A0012F314 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		B80971B728204BFD0012F314 /* PhotosCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewModel.swift; sourceTree = "<group>"; };
+		B80971B9282068C00012F314 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		B81532F0281BDBA1002C0611 /* PhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81532F3281BDBA1002C0611 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B81532F5281BDBA1002C0611 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B81532F7281BDBA1002C0611 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B81532FA281BDBA1002C0611 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B81532F7281BDBA1002C0611 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B81532FC281BDBA2002C0611 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B81532FF281BDBA2002C0611 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8153301281BDBA2002C0611 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B815330C281BDE08002C0611 /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
+		B815330E281BDE7A002C0611 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
+		B8153310281BDEA4002C0611 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B8153313281C0052002C0611 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		B8153316281C0365002C0611 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B866BA95281C104000EC67F8 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +55,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				151DE5BF22900BA68775A738 /* Pods_PhotoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64138E0749B2D2000E3133DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A996EEEC9FF373ECA37CFEDF /* Pods_PhotoApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9C50A0F7498E040319815197 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9FEB22FFA445D9379F024D1E /* Pods-PhotoApp.debug.xcconfig */,
+				4F1D968B621E31BEEEAF9979 /* Pods-PhotoApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B80971B42820446A0012F314 /* Hepers */ = {
+			isa = PBXGroup;
+			children = (
+				B80971B52820448A0012F314 /* Box.swift */,
+			);
+			path = Hepers;
+			sourceTree = "<group>";
+		};
 		B81532E7281BDBA1002C0611 = {
 			isa = PBXGroup;
 			children = (
 				B81532F2281BDBA1002C0611 /* PhotoApp */,
+				B80971B42820446A0012F314 /* Hepers */,
 				B81532F1281BDBA1002C0611 /* Products */,
+				9C50A0F7498E040319815197 /* Pods */,
+				64138E0749B2D2000E3133DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +109,80 @@
 		B81532F2281BDBA1002C0611 /* PhotoApp */ = {
 			isa = PBXGroup;
 			children = (
-				B81532F3281BDBA1002C0611 /* AppDelegate.swift */,
-				B81532F5281BDBA1002C0611 /* SceneDelegate.swift */,
-				B81532F7281BDBA1002C0611 /* ViewController.swift */,
-				B81532F9281BDBA1002C0611 /* Main.storyboard */,
-				B81532FC281BDBA2002C0611 /* Assets.xcassets */,
-				B81532FE281BDBA2002C0611 /* LaunchScreen.storyboard */,
-				B8153301281BDBA2002C0611 /* Info.plist */,
+				B866BA94281C102300EC67F8 /* Cells */,
+				B8153315281C0350002C0611 /* Services */,
+				B8153312281C003D002C0611 /* Models */,
+				B815330A281BDC97002C0611 /* SupportingFiles */,
+				B815330B281BDDB5002C0611 /* Views */,
+				B8153308281BDC6D002C0611 /* Resources */,
+				B8153309281BDC82002C0611 /* Storyboards */,
 			);
 			path = PhotoApp;
+			sourceTree = "<group>";
+		};
+		B8153308281BDC6D002C0611 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B81532FC281BDBA2002C0611 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B8153309281BDC82002C0611 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B81532FE281BDBA2002C0611 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		B815330A281BDC97002C0611 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B81532F3281BDBA1002C0611 /* AppDelegate.swift */,
+				B81532F5281BDBA1002C0611 /* SceneDelegate.swift */,
+				B8153301281BDBA2002C0611 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		B815330B281BDDB5002C0611 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B81532F7281BDBA1002C0611 /* TabBarController.swift */,
+				B815330E281BDE7A002C0611 /* FavouritesTableViewController.swift */,
+				B815330C281BDE08002C0611 /* PhotosCollectionViewController.swift */,
+				B80971B728204BFD0012F314 /* PhotosCollectionViewModel.swift */,
+				B8153310281BDEA4002C0611 /* DetailViewController.swift */,
+				B80971B9282068C00012F314 /* DetailViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8153312281C003D002C0611 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B8153313281C0052002C0611 /* Photo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B8153315281C0350002C0611 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B8153316281C0365002C0611 /* NetworkManager.swift */,
+				B80971B028203AE90012F314 /* DataManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B866BA94281C102300EC67F8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B866BA95281C104000EC67F8 /* PhotoCollectionViewCell.swift */,
+				B80971B2282043FC0012F314 /* PhotoCollectionViewModelCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8153304281BDBA2002C0611 /* Build configuration list for PBXNativeTarget "PhotoApp" */;
 			buildPhases = (
+				5D4E27819E68A0EB93C92426 /* [CP] Check Pods Manifest.lock */,
 				B81532EC281BDBA1002C0611 /* Sources */,
 				B81532ED281BDBA1002C0611 /* Frameworks */,
 				B81532EE281BDBA1002C0611 /* Resources */,
+				AA8E013A23A494113957DEB6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,34 +247,78 @@
 			files = (
 				B8153300281BDBA2002C0611 /* LaunchScreen.storyboard in Resources */,
 				B81532FD281BDBA2002C0611 /* Assets.xcassets in Resources */,
-				B81532FB281BDBA1002C0611 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5D4E27819E68A0EB93C92426 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PhotoApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA8E013A23A494113957DEB6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhotoApp/Pods-PhotoApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhotoApp/Pods-PhotoApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhotoApp/Pods-PhotoApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B81532EC281BDBA1002C0611 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B81532F8281BDBA1002C0611 /* ViewController.swift in Sources */,
+				B8153314281C0052002C0611 /* Photo.swift in Sources */,
+				B80971B128203AE90012F314 /* DataManager.swift in Sources */,
+				B81532F8281BDBA1002C0611 /* TabBarController.swift in Sources */,
 				B81532F4281BDBA1002C0611 /* AppDelegate.swift in Sources */,
+				B80971B828204BFD0012F314 /* PhotosCollectionViewModel.swift in Sources */,
 				B81532F6281BDBA1002C0611 /* SceneDelegate.swift in Sources */,
+				B8153317281C0365002C0611 /* NetworkManager.swift in Sources */,
+				B866BA96281C104000EC67F8 /* PhotoCollectionViewCell.swift in Sources */,
+				B8153311281BDEA4002C0611 /* DetailViewController.swift in Sources */,
+				B80971BA282068C00012F314 /* DetailViewModel.swift in Sources */,
+				B815330F281BDE7A002C0611 /* FavouritesTableViewController.swift in Sources */,
+				B80971B62820448A0012F314 /* Box.swift in Sources */,
+				B80971B3282043FC0012F314 /* PhotoCollectionViewModelCell.swift in Sources */,
+				B815330D281BDE08002C0611 /* PhotosCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B81532F9281BDBA1002C0611 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B81532FA281BDBA1002C0611 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B81532FE281BDBA2002C0611 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -282,6 +446,7 @@
 		};
 		B8153305281BDBA2002C0611 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FEB22FFA445D9379F024D1E /* Pods-PhotoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -289,10 +454,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YCD8TAUA7N;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PhotoApp/Info.plist;
+				INFOPLIST_FILE = PhotoApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -310,6 +474,7 @@
 		};
 		B8153306281BDBA2002C0611 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F1D968B621E31BEEEAF9979 /* Pods-PhotoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -317,10 +482,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YCD8TAUA7N;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PhotoApp/Info.plist;
+				INFOPLIST_FILE = PhotoApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
