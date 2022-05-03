@@ -20,6 +20,7 @@ struct Photo: Decodable {
     let photoDescription: String?
     let altDescription: String?
     let user: User
+    let links: [String: String]
     
     enum URls: String {
         case raw
@@ -37,9 +38,13 @@ struct Photo: Decodable {
         case photoDescription = "description"
         case altDescription = "alt_description"
         case user
+        case links
     }
 }
 
 struct User: Decodable {
-    let userName: String?
+    let userName: String
+    enum CodingKeys: String, CodingKey {
+        case userName = "username"
+    }
 }

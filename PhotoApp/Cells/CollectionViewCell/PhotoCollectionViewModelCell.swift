@@ -12,7 +12,6 @@ protocol PhotoCollectionViewModelCellProtocol {
     var image: String { get }
     var isFavorite: Box<Bool> { get }
     init(photo: Photo)
-    func setFavouriteStstus()
 }
 
 class PhotoCollectionViewModelCell: PhotoCollectionViewModelCellProtocol {
@@ -28,10 +27,5 @@ class PhotoCollectionViewModelCell: PhotoCollectionViewModelCellProtocol {
     required init(photo: Photo) {
         self.photo = photo
         isFavorite = Box(DataManager.shared.getFavouriteStatus(for: photo.id))
-    }
-    
-    func setFavouriteStstus() {
-        isFavorite.value.toggle()
-        DataManager.shared.setFavouriteStatus(for: photo.id, with: isFavorite.value)
     }
 }

@@ -22,12 +22,22 @@ class DataManager {
     func getFavouriteStatus(for photoID: String) -> Bool {
         userDefaults.bool(forKey: photoID)
     }
-    func addToFavourites(photoURL: String) {
-        var favourites = userDefaults.stringArray(forKey: kFavourites)
-        favourites?.append(photoURL)
+    func addToFavourites(photoId: String) {
+        if getFavourites().isEmpty {
+            let favorites: [String] = []
+            userDefaults.set(favorites, forKey: kFavourites)
+        }
+        var favourites = getFavourites()
+        favourites.append(photoId)
         userDefaults.set(favourites, forKey: kFavourites)
     }
-    func getFavourites() -> [String]? {
-        userDefaults.stringArray(forKey: kFavourites)
+    func removeFromFavourites(photoId: String) {
+        var favourites = getFavourites()
+        favourites = favourites.filter { $0 != photoId}
+        userDefaults.set(favourites, forKey: kFavourites)
+    }
+    func getFavourites() -> [String] {
+        guard let favourites = userDefaults.stringArray(forKey: kFavourites) else { return [] }
+        return favourites
     }
 }

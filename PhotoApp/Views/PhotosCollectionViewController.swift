@@ -32,6 +32,11 @@ class PhotosCollectionViewController: UICollectionViewController {
         setupSubviews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+    
     override func viewWillLayoutSubviews() {
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -54,7 +59,7 @@ class PhotosCollectionViewController: UICollectionViewController {
     }
     
     private func showRandomPhoto() {
-        photoCollectionViewModel.fetchPhoto(searchTerm: nil) { [unowned self] in
+        photoCollectionViewModel.fetchPhoto(type: .random, searchTerm: nil) { [unowned self] in
             activityIndicator.stopAnimating()
             self.collectionView.reloadData()
         }
@@ -70,6 +75,7 @@ class PhotosCollectionViewController: UICollectionViewController {
         let photoCellViewModel = photoCollectionViewModel.photoCellViewModel(at: indexPath)
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoCellViewModel.reuseID, for: indexPath)
                 as? PhotoCollectionViewCell else { return UICollectionViewCell() }
+        cell.layer.borderWidth = 1
         cell.photoCellViewModel = photoCellViewModel
         return cell
     }
@@ -80,7 +86,6 @@ class PhotosCollectionViewController: UICollectionViewController {
         let detailsVC = DetailViewController()
         detailsVC.detailsViewModel = photoCollectionViewModel.detailsViewModel(at: indexPath)
         navigationController?.pushViewController(detailsVC, animated: true)
-        print("\(indexPath.item)")
     }
 }
 
@@ -105,7 +110,7 @@ extension PhotosCollectionViewController: UISearchBarDelegate {
         activityIndicator.startAnimating()
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [unowned self] _ in
             if !searchText.isEmpty {
-                self.photoCollectionViewModel.fetchPhoto(searchTerm: searchText) { [unowned self] in
+                self.photoCollectionViewModel.fetchPhoto(type: .search, searchTerm: searchText) { [unowned self] in
                     self.activityIndicator.stopAnimating()
                     self.collectionView.reloadData()
                 }

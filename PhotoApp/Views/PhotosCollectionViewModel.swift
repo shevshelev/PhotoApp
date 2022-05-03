@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PhotosCollectionViewModelProtocol {
-    func fetchPhoto(searchTerm: String?, completion: @escaping() -> Void)
+    func fetchPhoto(type: ImageRequestType, searchTerm: String?, completion: @escaping () -> Void)
     func numberOfItems() -> Int
     func photoCellViewModel(at indexPath: IndexPath) -> PhotoCollectionViewModelCellProtocol
     func detailsViewModel(at indexPath: IndexPath) -> DetailViewModelProtocol
@@ -18,8 +18,8 @@ class PhotosCollectionViewModel: PhotosCollectionViewModelProtocol {
     
     private var photos: [Photo] = []
     
-    func fetchPhoto(searchTerm: String?, completion: @escaping () -> Void) {
-        NetworkManager.shared.fetchImages(searchTerm: searchTerm) { [unowned self] result in
+    func fetchPhoto(type: ImageRequestType, searchTerm: String?, completion: @escaping () -> Void) {
+        NetworkManager.shared.fetchImages(type: type, with: searchTerm, or: nil) { [unowned self] result in
             if searchTerm == nil {
                 guard let result = result as? [Photo] else { return }
                 self.photos = result

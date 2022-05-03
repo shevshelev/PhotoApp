@@ -7,19 +7,19 @@
 
 import Foundation
 
+enum ImageRequestType {
+    case random
+    case search
+    case single
+}
+
+
 class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-    func fetchImages(searchTerm: String?, completion: @escaping (Any?) -> ()) {
-        var type: ImageRequestType {
-            if searchTerm != nil {
-                return .search
-            } else {
-                return .random
-            }
-        }
-        imageRequest(for: type, searchTerm: searchTerm) { data, error in
+    func fetchImages(type: ImageRequestType, with searchTerm: String?, or photoId: String?, completion: @escaping (Any?) -> ()) {
+        imageRequest(for: type, with: searchTerm, or: photoId ) { data, error in
             if let error = error {
                 print(error.localizedDescription)
                 completion(nil)
@@ -30,6 +30,8 @@ class NetworkManager {
                 decode = self.decodeJSON(from: data, in: [Photo].self) as? [Photo]
             case .search:
                 decode = self.decodeJSON(from: data, in: SearchResults.self) as? SearchResults
+            case .single:
+                decode = self.decodeJSON(from: data, in: Photo.self) as? Photo
             }
             completion(decode)
         }
@@ -48,9 +50,9 @@ class NetworkManager {
         }
     }
     
-    private func imageRequest(for type: ImageRequestType, searchTerm: String?, completion: @escaping (Data?, Error?) -> Void) {
+    private func imageRequest(for type: ImageRequestType, with searchTerm: String?, or photoId: String?, completion: @escaping (Data?, Error?) -> Void) {
         let parameters = prepareParameters(for: type, searchTerm: searchTerm)
-        guard let url = getUrl(for: type, with: parameters) else { return }
+        guard let url = getUrl(for: type, with: parameters, or: photoId ) else { return }
         let request = URLRequest(url: url)
         let task = createDataTask(from: request, completion: completion)
         task.resume()
@@ -66,11 +68,15 @@ class NetworkManager {
             parameters["query"] = searchTerm
             parameters["page"] = "1"
             parameters["per_page"] = "30"
+        case .single:
+            break
         }
         return parameters
     }
     
-    private func getUrl(for type: ImageRequestType, with params: [String: String]) -> URL? {
+    
+    
+    private func getUrl(for type: ImageRequestType, with params: [String: String], or photoId: String?) -> URL? {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.unsplash.com"
@@ -79,6 +85,8 @@ class NetworkManager {
             components.path = "/photos/random"
         case .search:
             components.path = "/search/photos"
+        case .single:
+            components.path = "/photos/\(photoId!)"
         }
         
         components.queryItems = params.map { URLQueryItem(name: $0, value: $1)}
@@ -92,9 +100,5 @@ class NetworkManager {
             }
         }
     }
-    enum ImageRequestType {
-        case random
-        case search
-    }
-    
+ 
 }
