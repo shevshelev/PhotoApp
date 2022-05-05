@@ -7,7 +7,15 @@
 
 import Foundation
 
-class DataManager {
+protocol DataManagerProtocol {
+    func setFavouriteStatus(for photoId: String, with status: Bool)
+    func getFavouriteStatus(for photoID: String) -> Bool
+    func addToFavourites(photoId: String)
+    func removeFromFavourites(photoId: String)
+    func getFavourites() -> [String]
+}
+
+final class DataManager: DataManagerProtocol {
     static let shared = DataManager()
     
     private let userDefaults = UserDefaults()

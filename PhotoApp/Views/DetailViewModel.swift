@@ -15,10 +15,12 @@ protocol DetailViewModelProtocol {
     var aspectRatio: Double { get }
     var isFavourite: Box<Bool> { get }
     func setFavouriteStatus()
-    init(photo: Photo)
+    func checkFavouriteStatus()
+    init(photo: Photo, dataManager: DataManagerProtocol)
 }
 
-class DetailViewModel: DetailViewModelProtocol {
+final class DetailViewModel: DetailViewModelProtocol {
+    
     var image: String {
         photo.urls["regular"] ?? ""
     }
@@ -40,20 +42,26 @@ class DetailViewModel: DetailViewModelProtocol {
     
     var isFavourite: Box<Bool>
     
+    private let dataManager: DataManagerProtocol
     private let photo: Photo
     
-    required init(photo: Photo) {
+    required init(photo: Photo, dataManager: DataManagerProtocol) {
         self.photo = photo
-        isFavourite = Box(DataManager.shared.getFavouriteStatus(for: photo.id))
+        self.dataManager = dataManager
+        isFavourite = Box(dataManager.getFavouriteStatus(for: photo.id))
+    }
+    
+    func checkFavouriteStatus() {
+        isFavourite = Box(dataManager.getFavouriteStatus(for: photo.id))
     }
     
     @objc func setFavouriteStatus() {
         isFavourite.value.toggle()
-        DataManager.shared.setFavouriteStatus(for: photo.id, with: isFavourite.value)
+        dataManager.setFavouriteStatus(for: photo.id, with: isFavourite.value)
         if isFavourite.value {
-            DataManager.shared.addToFavourites(photoId: photo.id)
+            dataManager.addToFavourites(photoId: photo.id)
         } else {
-            DataManager.shared.removeFromFavourites(photoId: photo.id)
+            dataManager.removeFromFavourites(photoId: photo.id)
         }
     }
     

@@ -12,19 +12,28 @@ protocol FavouritesTableViewModelProtocol {
     func numberOfRows() -> Int
     func deleteFormFavourites(at indexPath: IndexPath)
     func favouritesCellViewModel(at indexPath: IndexPath) -> FavouriteTableViewModelCell
-    func detailsViewModel(at indexPath: IndexPath) -> DetailViewModelProtocol
+    func getPhoto(at indexPath: IndexPath) -> Photo
     func updatePhotos(completion: @escaping () -> Void)
 }
 
-class FavouritesTableViewModel: FavouritesTableViewModelProtocol {
+final class FavouritesTableViewModel: FavouritesTableViewModelProtocol {
     
-    private var favourites = DataManager.shared.getFavourites()
+    private let dataManager: DataManagerProtocol
+    private let networkManager: NetworkManagerProtocol
     
+    private var favourites: [String] = []
     private var photos: [Photo] = []
     
+    
+    init(dataManager: DataManagerProtocol, networkManager: NetworkManagerProtocol) {
+        self.dataManager = dataManager
+        self.networkManager = networkManager
+    }
+    
     func fetchPhotos(completion: @escaping () -> Void) {
+        favourites = dataManager.getFavourites()
         favourites.forEach {
-            NetworkManager.shared.fetchImages(type: .single, with: nil, or: $0) { [unowned self] photo in
+            networkManager.fetchImages(type: .single(photoID: $0)) { [unowned self] photo in
                 guard let photo = photo as? Photo else { return }
                 self.photos.append(photo)
                 completion()
@@ -33,14 +42,14 @@ class FavouritesTableViewModel: FavouritesTableViewModelProtocol {
     }
     
     func updatePhotos(completion: @escaping () -> Void) {
-        let updatedFavourites = DataManager.shared.getFavourites()
-        let newFaworites = updatedFavourites.filter { !favourites.contains($0)}
+        let updatedFavourites = dataManager.getFavourites()
+        let newFavorites = updatedFavourites.filter { !favourites.contains($0)}
         let removedFromFavorites = favourites.filter {
             !updatedFavourites.contains($0)
         }
-        if !newFaworites.isEmpty {
-            newFaworites.forEach {
-                NetworkManager.shared.fetchImages(type: .single, with: nil, or: $0) { [unowned self] photo in
+        if !newFavorites.isEmpty {
+            newFavorites.forEach {
+                networkManager.fetchImages(type: .single(photoID: $0)) { [unowned self] photo in
                     guard let photo = photo as? Photo else { return }
                     self.photos.append(photo)
                     completion()
@@ -62,13 +71,13 @@ class FavouritesTableViewModel: FavouritesTableViewModelProtocol {
         FavouriteTableViewModelCell(photo: photos[indexPath.row])
     }
     
-    func detailsViewModel(at indexPath: IndexPath) -> DetailViewModelProtocol {
-        DetailViewModel(photo: photos[indexPath.row])
+    func getPhoto(at indexPath: IndexPath) -> Photo {
+        photos[indexPath.row]
     }
     
     func deleteFormFavourites(at indexPath: IndexPath) {
         let photo = photos[indexPath.row]
-        DataManager.shared.setFavouriteStatus(for: photo.id, with: false)
-        DataManager.shared.removeFromFavourites(photoId: photo.id)
+        dataManager.setFavouriteStatus(for: photo.id, with: false)
+        dataManager.removeFromFavourites(photoId: photo.id)
     }
 }

@@ -5,10 +5,9 @@
 //  Created by Shevshelev Lev on 29.04.2022.
 //
 
-import UIKit
 import SDWebImage
 
-class PhotoCollectionViewCell: UICollectionViewCell {
+final class PhotoCollectionViewCell: UICollectionViewCell {
     
     var photoCellViewModel: PhotoCollectionViewModelCellProtocol! {
         didSet {

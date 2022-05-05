@@ -7,16 +7,25 @@
 
 import UIKit
 
-class FavouritesTableViewController: UITableViewController {
+final class FavouritesTableViewController: UITableViewController {
     
-    private var favouritesTableViewModel: FavouritesTableViewModelProtocol!
-
+    private let favouritesTableViewModel: FavouritesTableViewModelProtocol
+    private let configurator: ConfiguratorProtocol
+    
+    init(viewModel: FavouritesTableViewModelProtocol, configurator: ConfiguratorProtocol) {
+        self.configurator = configurator
+        favouritesTableViewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         setupTableView()
-        
-        favouritesTableViewModel = FavouritesTableViewModel()
         favouritesTableViewModel.fetchPhotos {
             self.tableView.reloadData()
         }
@@ -54,11 +63,9 @@ class FavouritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            showAlert(for: indexPath)
-//            favouritesTableViewModel.deleteFormFavourites(at: indexPath)
-//            favouritesTableViewModel.updatePhotos {
-//                tableView.deleteRows(at: [indexPath], with: .fade)
-//            }
+            showAlert(for: indexPath) {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
     }
 
@@ -70,23 +77,24 @@ class FavouritesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailViewController()
-        detailVC.detailsViewModel = favouritesTableViewModel.detailsViewModel(at: indexPath)
+        let detailVC = configurator.configureDetailVC(
+            with: favouritesTableViewModel.getPhoto(at: indexPath)
+        )
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
 extension FavouritesTableViewController {
-    private func showAlert(for indexPath: IndexPath) {
+    private func showAlert(for indexPath: IndexPath, completion: @escaping () -> ()) {
         let alertController = UIAlertController(
             title: "Are you sure?",
-            message: "Are you sure you want to remove the photo from your favorites?",
+            message: "Are you sure you want to remove the photo from your favourites?",
             preferredStyle: .alert
         )
         let okAction = UIAlertAction(title: "Ok", style: .default) { [unowned self] _ in
             self.favouritesTableViewModel.deleteFormFavourites(at: indexPath)
             self.favouritesTableViewModel.updatePhotos {
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                completion()
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)

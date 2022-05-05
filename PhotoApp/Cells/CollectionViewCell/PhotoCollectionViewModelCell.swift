@@ -11,10 +11,11 @@ protocol PhotoCollectionViewModelCellProtocol {
     var reuseID: String { get }
     var image: String { get }
     var isFavorite: Box<Bool> { get }
-    init(photo: Photo)
+    var aspectRatio: Double { get }
+    init(photo: Photo, dataManager: DataManagerProtocol)
 }
 
-class PhotoCollectionViewModelCell: PhotoCollectionViewModelCellProtocol {
+final class PhotoCollectionViewModelCell: PhotoCollectionViewModelCellProtocol {
     var isFavorite: Box<Bool>
     var reuseID: String {
         "PhotoCell"
@@ -22,10 +23,15 @@ class PhotoCollectionViewModelCell: PhotoCollectionViewModelCellProtocol {
     var image: String {
         photo.urls["small"] ?? ""
     }
+    var aspectRatio: Double {
+        Double(photo.height) / Double(photo.width)
+    }
     private let photo: Photo
+    private let dataManager: DataManagerProtocol
     
-    required init(photo: Photo) {
+    required init(photo: Photo, dataManager: DataManagerProtocol) {
         self.photo = photo
-        isFavorite = Box(DataManager.shared.getFavouriteStatus(for: photo.id))
+        self.dataManager = dataManager
+        isFavorite = Box(dataManager.getFavouriteStatus(for: photo.id))
     }
 }

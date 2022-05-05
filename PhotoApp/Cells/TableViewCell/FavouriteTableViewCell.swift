@@ -5,10 +5,9 @@
 //  Created by Shevshelev Lev on 03.05.2022.
 //
 
-import UIKit
 import SDWebImage
 
-class FavouriteTableViewCell: UITableViewCell {
+final class FavouriteTableViewCell: UITableViewCell {
     
     var favouriteCellViewModel: FavouriteTableViewModelCellProtocol! {
         didSet {

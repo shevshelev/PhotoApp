@@ -5,16 +5,11 @@
 //  Created by Shevshelev Lev on 29.04.2022.
 //
 
-import UIKit
 import SDWebImage
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController, UIScrollViewDelegate {
     
-    var detailsViewModel: DetailViewModelProtocol! {
-        didSet {
-            setupUI()
-        }
-    }
+    private let detailsViewModel: DetailViewModelProtocol
     
     private lazy var scrollView: UIScrollView = {
        let scrollView = UIScrollView()
@@ -59,6 +54,14 @@ class DetailViewController: UIViewController {
     private lazy var thumbLabel: UILabel = createLabel(with: "Thumb")
     private lazy var thumbTextView: UITextView = createTextView()
     
+    init(viewModel: DetailViewModelProtocol) {
+        detailsViewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +71,7 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        detailsViewModel.checkFavouriteStatus()
         setupUI()
     }
     
@@ -164,13 +168,4 @@ class DetailViewController: UIViewController {
             UIImage(systemName: status ? "heart.fill" : "heart"),
             for: .normal)
     }
-//    private func favouriteButtonPressed() {
-//        detailsViewModel.setFavouriteStatus()
-//    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension DetailViewController: UIScrollViewDelegate {
-    
 }

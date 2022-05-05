@@ -7,7 +7,16 @@
 
 import Foundation
 
-class Box<T> {
+protocol BoxProtocol {
+    associatedtype Value
+    associatedtype Listener
+    var listener: Listener? { get }
+    var value: Value { get set }
+    init(_ value: Value)
+    func bind(listener: Listener)
+}
+
+final class Box<T>: BoxProtocol {
     typealias Listener = (T) -> Void
     
     var listener: Listener?
@@ -18,7 +27,7 @@ class Box<T> {
         }
     }
     
-    init(_ value: T) {
+    required init(_ value: T) {
         self.value = value
     }
     

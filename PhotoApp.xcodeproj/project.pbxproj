@@ -26,6 +26,7 @@
 		B8153311281BDEA4002C0611 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8153310281BDEA4002C0611 /* DetailViewController.swift */; };
 		B8153314281C0052002C0611 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8153313281C0052002C0611 /* Photo.swift */; };
 		B8153317281C0365002C0611 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8153316281C0365002C0611 /* NetworkManager.swift */; };
+		B8626AF82823A51C0092B41F /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8626AF72823A51C0092B41F /* Configurator.swift */; };
 		B866BA96281C104000EC67F8 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866BA95281C104000EC67F8 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		B8153310281BDEA4002C0611 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B8153313281C0052002C0611 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		B8153316281C0365002C0611 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B8626AF72823A51C0092B41F /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		B866BA95281C104000EC67F8 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				B80971B52820448A0012F314 /* Box.swift */,
+				B8626AF72823A51C0092B41F /* Configurator.swift */,
 			);
 			path = Hepers;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				B866BA96281C104000EC67F8 /* PhotoCollectionViewCell.swift in Sources */,
 				B8153311281BDEA4002C0611 /* DetailViewController.swift in Sources */,
 				B80971BA282068C00012F314 /* DetailViewModel.swift in Sources */,
+				B8626AF82823A51C0092B41F /* Configurator.swift in Sources */,
 				B815330F281BDE7A002C0611 /* FavouritesTableViewController.swift in Sources */,
 				B80971B62820448A0012F314 /* Box.swift in Sources */,
 				B80971BC282126FB0012F314 /* FavouritesTableViewModel.swift in Sources */,

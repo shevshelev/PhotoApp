@@ -7,13 +7,10 @@
 
 import UIKit
 
-class PhotosCollectionViewController: UICollectionViewController {
+final class PhotosCollectionViewController: UICollectionViewController {
     
-    private var photoCollectionViewModel: PhotosCollectionViewModelProtocol! {
-        didSet {
-            showRandomPhoto()
-        }
-    }
+    private let configurator: ConfiguratorProtocol
+    private let photoCollectionViewModel: PhotosCollectionViewModelProtocol
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -23,10 +20,20 @@ class PhotosCollectionViewController: UICollectionViewController {
         indicator.startAnimating()
         return indicator
     }()
+    
+    init(with viewModel: PhotosCollectionViewModelProtocol, viewLayout: UICollectionViewLayout, configurator: ConfiguratorProtocol) {
+        photoCollectionViewModel = viewModel
+        self.configurator = configurator
+        super.init(collectionViewLayout: viewLayout)
+    }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        photoCollectionViewModel = PhotosCollectionViewModel()
+        showRandomPhoto()
         setupCollectionView()
         setupNavBar()
         setupSubviews()
@@ -59,7 +66,7 @@ class PhotosCollectionViewController: UICollectionViewController {
     }
     
     private func showRandomPhoto() {
-        photoCollectionViewModel.fetchPhoto(type: .random, searchTerm: nil) { [unowned self] in
+        photoCollectionViewModel.fetchPhoto(type: .random) { [unowned self] in
             activityIndicator.stopAnimating()
             self.collectionView.reloadData()
         }
@@ -75,7 +82,6 @@ class PhotosCollectionViewController: UICollectionViewController {
         let photoCellViewModel = photoCollectionViewModel.photoCellViewModel(at: indexPath)
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoCellViewModel.reuseID, for: indexPath)
                 as? PhotoCollectionViewCell else { return UICollectionViewCell() }
-        cell.layer.borderWidth = 1
         cell.photoCellViewModel = photoCellViewModel
         return cell
     }
@@ -83,8 +89,9 @@ class PhotosCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailsVC = DetailViewController()
-        detailsVC.detailsViewModel = photoCollectionViewModel.detailsViewModel(at: indexPath)
+        let detailsVC = configurator.configureDetailVC(
+            with: photoCollectionViewModel.getPhoto(at: indexPath)
+        )
         navigationController?.pushViewController(detailsVC, animated: true)
     }
 }
@@ -93,8 +100,9 @@ class PhotosCollectionViewController: UICollectionViewController {
 
 extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellViewModel = photoCollectionViewModel.photoCellViewModel(at: indexPath)
         let w = UIScreen.main.bounds.width / 2 - 13
-        let h = UIScreen.main.bounds.height / 3
+        let h = cellViewModel.aspectRatio * w
         return CGSize(width: w, height: h)
     }
     
@@ -110,7 +118,7 @@ extension PhotosCollectionViewController: UISearchBarDelegate {
         activityIndicator.startAnimating()
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [unowned self] _ in
             if !searchText.isEmpty {
-                self.photoCollectionViewModel.fetchPhoto(type: .search, searchTerm: searchText) { [unowned self] in
+                self.photoCollectionViewModel.fetchPhoto(type: .search(searchTerm: searchText)) { [unowned self] in
                     self.activityIndicator.stopAnimating()
                     self.collectionView.reloadData()
                 }

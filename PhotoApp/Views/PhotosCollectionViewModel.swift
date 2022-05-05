@@ -8,23 +8,32 @@
 import Foundation
 
 protocol PhotosCollectionViewModelProtocol {
-    func fetchPhoto(type: ImageRequestType, searchTerm: String?, completion: @escaping () -> Void)
+    func fetchPhoto(type: ImageRequestType, completion: @escaping () -> Void)
     func numberOfItems() -> Int
     func photoCellViewModel(at indexPath: IndexPath) -> PhotoCollectionViewModelCellProtocol
-    func detailsViewModel(at indexPath: IndexPath) -> DetailViewModelProtocol
+    func getPhoto(at indexPath: IndexPath) -> Photo
 }
 
-class PhotosCollectionViewModel: PhotosCollectionViewModelProtocol {
+final class PhotosCollectionViewModel: PhotosCollectionViewModelProtocol {
+    
+    private let networkManager: NetworkManagerProtocol
+    private let dataManager: DataManagerProtocol
+    
+    init(networkManager: NetworkManagerProtocol, dataManager: DataManagerProtocol) {
+        self.networkManager = networkManager
+        self.dataManager = dataManager
+    }
     
     private var photos: [Photo] = []
     
-    func fetchPhoto(type: ImageRequestType, searchTerm: String?, completion: @escaping () -> Void) {
-        NetworkManager.shared.fetchImages(type: type, with: searchTerm, or: nil) { [unowned self] result in
-            if searchTerm == nil {
+    func fetchPhoto(type: ImageRequestType, completion: @escaping () -> Void) {
+        networkManager.fetchImages(type: type) { [unowned self] result in
+            switch type {
+            case .random:
                 guard let result = result as? [Photo] else { return }
                 self.photos = result
                 completion()
-            } else {
+            default:
                 guard let result = result as? SearchResults else { return }
                 self.photos = result.results
                 completion()
@@ -37,12 +46,10 @@ class PhotosCollectionViewModel: PhotosCollectionViewModelProtocol {
     }
     
     func photoCellViewModel(at indexPath: IndexPath) -> PhotoCollectionViewModelCellProtocol {
-        PhotoCollectionViewModelCell(photo: photos[indexPath.item])
+        PhotoCollectionViewModelCell(photo: photos[indexPath.item], dataManager: dataManager)
     }
     
-    func detailsViewModel(at indexPath: IndexPath) -> DetailViewModelProtocol {
-        DetailViewModel(photo: photos[indexPath.item])
+    func getPhoto(at indexPath: IndexPath) -> Photo {
+        photos[indexPath.item]
     }
-    
-    
 }

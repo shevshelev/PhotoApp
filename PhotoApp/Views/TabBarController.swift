@@ -7,13 +7,13 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
+    
+    private let configurator: ConfiguratorProtocol
     
     private lazy var photosVC: UINavigationController = {
         setupVC(
-            VC: PhotosCollectionViewController(
-                collectionViewLayout: UICollectionViewFlowLayout()
-            ),
+            VC: configurator.configurePhotosCollectionVC(),
             title: "Photos",
             imageName: "photo.tv"
         )
@@ -21,12 +21,21 @@ class TabBarController: UITabBarController {
     
     private lazy var favouritesVC: UINavigationController = {
         setupVC(
-            VC: FavouritesTableViewController(),
+            VC: configurator.configureFavouritesVC(),
             title: "Favourites",
             imageName: "heart.rectangle"
         )
     }()
-
+    
+    init(_ configurator: ConfiguratorProtocol) {
+        self.configurator = configurator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -13,7 +13,8 @@ protocol FavouriteTableViewModelCellProtocol {
     var image: String { get }
     init(photo: Photo)
 }
-class FavouriteTableViewModelCell: FavouriteTableViewModelCellProtocol {
+
+final class FavouriteTableViewModelCell: FavouriteTableViewModelCellProtocol {
     var reuseID: String {
         "FavouriteCell"
     }
